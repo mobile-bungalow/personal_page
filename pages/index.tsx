@@ -1,40 +1,61 @@
-import Container from '../components/container'
-import MoreStories from '../components/more-stories'
-import HeroPost from '../components/hero-post'
-import Intro from '../components/intro'
+import Screw from '../components/Screw'
 import Layout from '../components/layout'
 import { getAllPosts } from '../lib/api'
 import Head from 'next/head'
-import { CMS_NAME } from '../lib/constants'
 import Post from '../interfaces/post'
+import { Header, PageSelected } from '../components/header'
+import Hr from '../components/hr'
+import ArticlePreviews from '../components/ArticlePreviews'
 
 type Props = {
   allPosts: Post[]
 }
 
 export default function Index({ allPosts }: Props) {
-  const heroPost = allPosts[0]
-  const morePosts = allPosts.slice(1)
   return (
     <>
       <Layout>
         <Head>
-          <title>Next.js Blog Example with {CMS_NAME}</title>
+          <title>Paul May</title>
         </Head>
-        <Container>
-          <Intro />
-          {heroPost && (
-            <HeroPost
-              title={heroPost.title}
-              coverImage={heroPost.coverImage}
-              date={heroPost.date}
-              author={heroPost.author}
-              slug={heroPost.slug}
-              excerpt={heroPost.excerpt}
-            />
-          )}
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-        </Container>
+        <Header page_selected={PageSelected.Home}></Header>
+        <div className='container drop_shadow'>
+          <div className='screw'>
+            <div></div>
+            <Screw></Screw>
+          </div>
+          <div className='cols'>
+            <div className='col one'>
+              <div className='label splash_bar __y'>Hello, I'm Paul May</div>
+              <Hr></Hr>
+              <div className='darker_container content'>
+                I’m an Oakland based software engineer employed at Rapid7. In my free time I draw, make games, and do tiny research projects. This site hosts my work portfolio,  blog posts, and a small gallery of curated internet garbage.
+              </div>
+              <div className='label splash_bar __y'>Contact Me</div>
+              <Hr></Hr>
+              <div className='darker_container content'>
+                <ul>
+                  <li>Email: reverse the following - [moc.liamg@krow.yamwp]</li>
+                  <li>Linkedin: <a href="https://www.linkedin.com/in/mobile-bungalow">Paul May</a></li>
+                  <li>Github: <a href="https://github.com/mobile-bungalow">mobile-bungalow</a> </li>
+                </ul>
+              </div>
+            </div>
+            <div className='vr desktop_only'>
+              <div className='point'></div>
+              <div style={{ height: "100%" }}></div>
+              <div className='point'></div>
+            </div>
+            <div className='col desktop_only one'>
+              <div className='label splash_bar __r'>Recent Posts</div>
+              <ArticlePreviews articles={allPosts}></ArticlePreviews>
+            </div>
+          </div>
+          <div className='screw'>
+            <Screw></Screw>
+            <div style={{ fontSize: "10px", fontFamily: "redhat" }} >Copyright (2023)</div>
+          </div>
+        </div>
       </Layout>
     </>
   )
@@ -48,6 +69,7 @@ export const getStaticProps = async () => {
     'author',
     'coverImage',
     'excerpt',
+    'tags',
   ])
 
   return {
