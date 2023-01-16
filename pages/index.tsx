@@ -6,19 +6,27 @@ import Post from '../interfaces/post'
 import { Header, PageSelected } from '../components/header'
 import Hr from '../components/hr'
 import ArticlePreviews from '../components/ArticlePreviews'
+import NavPopover from '../components/NavPopover'
+import { useState } from 'react'
 
 type Props = {
   allPosts: Post[]
 }
 
 export default function Index({ allPosts }: Props) {
+  let [show, set_show] = useState(false);
   return (
     <>
+
+      <button className={show ? "close svg_button" : "noshow"} onClick={() => { set_show(false) }}>
+        <img src="/images/exit.svg"></img>
+      </button>
+      <NavPopover show_fn={set_show} show={show} page_selected={PageSelected.Home}></NavPopover>
       <Layout>
         <Head>
           <title>Paul May</title>
         </Head>
-        <Header page_selected={PageSelected.Home}></Header>
+        <Header set_show_popover={set_show} page_selected={PageSelected.Home}></Header>
         <div className='container drop_shadow'>
           <div className='screw'>
             <div></div>
@@ -27,12 +35,10 @@ export default function Index({ allPosts }: Props) {
           <div className='cols'>
             <div className='col one'>
               <div className='label splash_bar __y'>Hello, I'm Paul May</div>
-              <Hr></Hr>
               <div className='darker_container content'>
                 I’m an Oakland based software engineer employed at Rapid7. In my free time I draw, make games, and do tiny research projects. This site hosts my work portfolio,  blog posts, and a small gallery of curated internet garbage.
               </div>
               <div className='label splash_bar __y'>Contact Me</div>
-              <Hr></Hr>
               <div className='darker_container content'>
                 <ul>
                   <li>Email: reverse the following - [moc.liamg@krow.yamwp]</li>

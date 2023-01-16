@@ -1,5 +1,3 @@
-import Container from './container'
-import cn from 'classnames'
 
 type Props = {
   preview?: boolean
@@ -8,8 +6,6 @@ type Props = {
 const Alert = ({ preview }: Props) => {
   return (
     <div>
-      <Container>
-      </Container>
     </div>
   )
 }

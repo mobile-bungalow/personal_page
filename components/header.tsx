@@ -10,6 +10,7 @@ enum PageSelected {
 
 interface HeaderProps {
   page_selected: PageSelected,
+  set_show_popover: (show: boolean) => void,
 }
 
 
@@ -32,10 +33,9 @@ const Header = (props: HeaderProps) => {
         <Link className={props.page_selected == 'Gallery' ? "current_page" : "label"} href="/Gallery">
           4.Gallery
         </Link>
-
       </div>
       <div className='mobile_only'>
-        <button className='svg_button'>
+        <button className='svg_button' onClick={() => { props.set_show_popover(true) }}>
           <img src="/images/hamburger.svg"></img>
         </button>
       </div>
