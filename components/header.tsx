@@ -1,8 +1,4 @@
 import Link from 'next/link'
-import logo from '../public/images/logo.svg'
-import Container from './container'
-import { useState } from 'react';
-import { AppProps } from 'next/app';
 
 
 enum PageSelected {
