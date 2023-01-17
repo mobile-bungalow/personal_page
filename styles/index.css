@@ -97,7 +97,7 @@ body {
 /*current page label in the nav bar*/
 .current_page {
     font-size: 28px;
-    -webkit-text-stroke: 0.33px black;
+    -webkit-text-stroke: 0.48px black;
     letter-spacing: 1px;
     font-family: inconsolata ExtraBold;
     color: var(--primary-color);
@@ -119,8 +119,25 @@ body {
     align-items: center;
     top: 0;
     left: 0;
-    height: 100%;
-    width: 100%;
+    height: calc(100% - 2 * var(--small-gap));
+    width: calc(100% - 2 * var(--small-gap));
+}
+
+.upperLeft {
+    position: fixed;
+    display: flex;
+    left: var(--medium-gap);
+    top: var(--medium-gap);
+}
+
+.bottomSpread {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: calc(100% - 2 * var(--medium-gap));
+    bottom: var(--medium-gap);
+    right: var(--medium-gap);
 }
 
 .close {
